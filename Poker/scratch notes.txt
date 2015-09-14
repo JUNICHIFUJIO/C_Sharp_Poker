@@ -1,0 +1,157 @@
+Scenario:
+-- Have a two pair
+-- Have 5000 dollars
+-- very confident i can win
+-- bet is ante (20)
+
+-- i would bet anywhere from 30 (to test people) to about 300 if I wanted to force the hands of everyone 
+-- raise to 50
+
+Scenario:
+-- two pair
+-- have 5000 dollars
+-- very confident
+-- bet is 200 (2 people raised, one folded)
+
+-- i would raise to 300 to make it known i'm confident about my hand (very little chance of someone having a stronger hand (5%?))
+
+
+Scenario:
+-- one pair
+-- have 300 dollars
+-- not really confident
+-- bet is ante
+
+-- i would raise from 30 to 50 depending on the value of the pair
+
+Scenario:
+-- one pair
+-- have 5000 dollars
+-- not really confident
+-- doesn't change much unless i have a ton of money
+
+-- i would raise to 30 to 60 dollars
+
+Scenario:
+-- straight
+-- have 1000 dollars
+-- fully confident i'll win
+-- doesn't change
+-- ante
+
+-- i would raise from ante to 80
+-- i would raise from raised amount of 200 to 350 or call (to wring out more money from people)
+-- i would raise from raised amount of 1000 to 1100
+
+Scenario:
+-- high card
+-- have x money
+-- no confidence
+-- stay in on ante, fold on everything else
+
+Scenario:
+-- three of a kind
+-- have 1000 dollars
+-- ante: 70 dollars
+-- raised to 200: 250
+
+Scenario:
+-- four of a kind
+-- have 3000
+-- ante: 100 dollars (second round) (or 50 if wringing people dry)
+--raised to 300: 400
+
+***
+full house and above you can wring people dry in the first round
+// aka bet lower than you would normally, let people continue raising, then see how things pan out 
+// for the second round after discards are done
+
+
+
+
+
+
+
+There is an innate calculable value for each and every single hand.
+However, the value of the hand is entirely dependent upon
+	-- current money held	
+	-- potential loss
+	-- potential gain
+	-- chances of the hand being beaten by another player
+
+The value of the hand is a multiplier that is applied to some base value.
+This multiplier multiplied by the base value means that 
+
+1) Calculate the base value
+2) Adjust the value based on the amount of money currently in the pot
+3) Determine if the value of the card is sufficient to continue gambling
+4) 
+
+Indicates that there is some maximum value that people are willing to bet
+before they refuse to bet anymore. This MAX_VALUE should be dependent on the
+amount of money they have before hand. Once an individual has gone all in,
+they do not have to consider this MAX_VALUE anymore.
+
+The MAX_VALUE is also dependent upon how easily other people can reach this
+value. If one individual is able to bet up to 100 k, while everyone else is
+able to bet up to 20 k, the first individual is not going to bet all 100 k
+in any circumstance. He will bet at most 20 k.
+
+This indicates that MAX_VALUE is dependent upon a set of weighted values
+dependent upon each individual's available funds, and is entirely dynamic in
+nature.
+
+In addition, MAX_VALUE is also affected by the value of one's hand. If possessing
+a particularly powerful hand, or one that is very very likely to win, given the
+remainder of the cards, MAX_VALUE may fluctuate one way or the other.
+
+Scenarios:
+1) 10 k, 10k, 10k : 100 k
+2) 30 k, 24 k, 12 k, : 20 k
+3) 15 k, 25 k, 25 k : 8 k
+4) 5 k, 5 k, 5 k : 5 k
+
+Critical maximum, tends to be 80%
+--> Maximum derived then from the current bet, which may be up to 1.32x
+	the current bet as long as it does not exceed the critical maximum.
+
+--> If the estimated value greatly exceeds ( > 2.5x) the current bet, will
+make a bid to raise
+--> If estimated value somewhat exceeds the current bet, or is close,
+will estimate the chances to win, and from there decides whether to call
+or to raise or to fold (if value greatly lower
+
+
+1) ABS_MAX: 10 k, MAX_SAFE: 8 k
+	high card: 0 k to 1 k;
+	one pair: 1 k to 5 k;
+	three of a kind: 3 to 10 k;
+	two pair: 10 k to 20 k;
+	full house: 10 k to 25 k;
+
+Chances for hands:
+	high card: 1 - others
+		
+	one pair: 3 / 51 * 48 / 50 * 47 / 49 * 46 / 48 = 311328 / 5997600
+		= .0519087635054022 = 5.191%
+	two pair: 6 / 50 * 5 / 49 * 44 / 48 = 1320 / 117600
+		= .0112244897959184 = 1.122%
+	three of a kind: 3 / 51 * 2 / 50 * 48 / 49 * 47 / 48 = 13536 / 5997600
+		= .0022569027611044 = .226%
+	flush: (12 * 11 * 10 * 9) / (51 * 50 * 49 * 48) =  11880 / 5997600 
+		= .0019807923169268 = .198%
+	full house: 6 / 50 * 5 / 49 * 4 / 48 = 120 / 117600
+		= .0010204081632653 = .102%
+
+	straight: too much work to hash out
+		simple: (5) royal_straight * 2 * 52 / 20;
+			(2) royal_straight 
+	
+	royal straight: 20 / 52 * 16 / 51 * 12 / 50 * 8 / 49 * 4 / 48 = 122880 / 311875200
+		= .0003940037553482932 = .0394%
+	four of a kind: 3 / 51 * 2 / 50 * 1 / 49 = 6 / 124950
+		= .00004801920768307323 = .00480%
+	straight flush: 4 * 9 * 5! / total_cards = .0000153907716932927
+		
+	royal flush: 20 / 52 * 4 / 51 * 3 / 50 * 2 / 49 * 1 / 48 = 480 / 311875200
+		= .00000153907716932927 = .000154% chance

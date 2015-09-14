@@ -1,0 +1,39 @@
+--Fixes:
+	4) if you want to say bet or raise, make it possible to immediately
+		enter the amount
+	need to be able to bluff for player
+	reset() for deck needs to move the bottom cards to the top of the deck,
+		not the bottom
+
+	fill best will replace aces with ace_highs in
+		one pair
+		two pair
+		three of a kind
+		four of a kind
+		full house
+		royal straight
+		royal flush
+
+
+	straight flush ace to five prints backwards (ace is top when five should be top)
+
+	bet is less than call amount but over 0:
+		two pair; random, aware
+
+--Text:
+	every bet should be a deposit(withdraw(player's bet))
+
+	erroneous return from bet when trying to raise by 30 when bet is 70 (ante + 10 + 15)
+	ERROR: returned bet from calculate_bet is less than previous bet but greater than 0 (bet: 10; previous_bet: 15) 
+		(She had bet 10 dollars last round too)
+
+	player's best hand value is never set to anything but end (at least for straight flushes)
+
+	1) raise 2) call 1) fold WHYYY
+		call in Game is applying the money returned to the bet
+
+	If raising, raise amount by AI HAS to be above previous bet amount -> change this!
+
+
+	raising in the same turn after a bet doesn't change the current bet,
+	nor does it raise 

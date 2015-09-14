@@ -1,0 +1,2 @@
+C:\Users\junic_000\Documents\Visual Studio 2013\Projects\C#\Poker\Poker\bin\Debug\Poker.exe.config
+C:\Users\junic_000\Documents\Visual Studio 2013\Projects\C#\Poker\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
